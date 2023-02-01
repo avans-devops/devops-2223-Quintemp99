@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
 
 // Connection URI
-const uri = "mongodb://127.0.0.1:27017/";
+const uri = process.env.MONGO_URL;
 
 const client = new MongoClient(uri, {
     useNewUrlParser: true,
@@ -16,14 +16,14 @@ module.exports = {
     getDb: async function () {
       return new Promise((resolve, reject) => {
         if (!dbConnection) {
-          console.log("Opening connection");
-  
+          console.log("Opening connection with ");
+          
           client.connect(function (err, db) {
             if (err || !db) {
               reject(err);
             }
 
-            dbConnection = db.db("myapp");
+            dbConnection = db.db(process.env.DB_NAME);
   
             console.log("Successfully connected to MongoDB.");
   
