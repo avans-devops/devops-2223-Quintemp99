@@ -18,4 +18,9 @@ jobs:
             - uses: ArtiomTr/jest-coverage-report-action@v2
               with:
                   working-directory: Week_1/routes
-        
+            - name: npm clean install
+            - working-directory: ./Week_1
+            - run: npm ci
+            - name: run lint
+            - working-directory: ./Week_1
+            - run: npm run lint
