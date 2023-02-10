@@ -1,0 +1,23 @@
+name: 'coverage'
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - Week_1/routes/**
+    pull_request:
+        branches:
+            -main
+        paths:
+            - Week_1/routes/**
+jobs:
+    coverage:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: npm clean install
+              working-directory: ./Week_1
+              run: npm ci
+            - name: run lint
+              working-directory: ./Week_1
+              run: npm run lint
