@@ -19,8 +19,8 @@ jobs:
               with:
                   working-directory: Week_1/routes
             - name: npm clean install
-            - working-directory: ./Week_1
-            - run: npm ci
+              working-directory: ./Week_1
+              run: npm ci
             - name: run lint
-            - working-directory: ./Week_1
-            - run: npm run lint
+              working-directory: ./Week_1
+              run: npm run lint
