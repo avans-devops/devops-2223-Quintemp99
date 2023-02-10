@@ -20,7 +20,7 @@ router.route('/').get((req, res) => {
       db.collection("users")
         .insertOne(req.body, function (err, result) {
           if (err) {
-            res.status(400).send("Error inserting user!");
+            res.status(400).send("Error inserting je moeder!");
           } else {
             console.log('id', result.insertedId);
             res.status(204).send();
