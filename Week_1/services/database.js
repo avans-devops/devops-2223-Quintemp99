@@ -16,7 +16,7 @@ module.exports = {
     getDb: async function () {
       return new Promise((resolve, reject) => {
         if (!dbConnection) {
-          console.log("Opening connection with ");
+          console.log("Opening connection with");
           
           client.connect(function (err, db) {
             if (err || !db) {
