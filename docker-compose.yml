@@ -1,0 +1,20 @@
+version: "3.9"
+
+services: 
+  demoapi:
+    build: ./Week_1
+    command: npm run dev
+    ports:
+      - 12345:3000
+    environment:
+      - MONGO_URL=mongodb://demoUser:secretpassword@usersDatabase:27017
+      - DB_NAME=myapp
+    volumes:
+      - ./Week_1:/usr/src/app
+  usersDatabase:
+    image: mongo:5.0.15
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=demoUser
+      - MONGO_INITDB_ROOT_PASSWORD=secretpassword
+    volumes:
+      - ./usersDbFolder:/data/db

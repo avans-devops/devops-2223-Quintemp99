@@ -2,6 +2,7 @@ const { MongoClient } = require("mongodb");
 
 // Connection URI
 const uri = process.env.MONGO_URL;
+// const uri = "mongodb://127.0.0.1:27017/"
 
 const client = new MongoClient(uri, {
     useNewUrlParser: true,
@@ -17,7 +18,7 @@ module.exports = {
       return new Promise((resolve, reject) => {
         if (!dbConnection) {
           console.log("Opening connection with ");
-          
+          console.log(uri)
           client.connect(function (err, db) {
             if (err || !db) {
               reject(err);
