@@ -5,12 +5,25 @@ services:
     build: ./Week_1
     command: npm run dev
     ports:
-      - 12345:3000
+      - 12345:5000
     environment:
+      - PORT=5000
       - MONGO_URL=mongodb://demoUser:secretpassword@usersDatabase:27017
       - DB_NAME=myapp
     volumes:
       - ./Week_1:/usr/src/app
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    ports:
+      - 9090:9090
+    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
+  grafana:
+    build: ./grafana
+    ports:
+      - 3000:3000
   usersDatabase:
     image: mongo:5.0.15
     environment:
@@ -18,3 +31,5 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=secretpassword
     volumes:
       - ./usersDbFolder:/data/db
+volumes:
+  prometheus-data:
